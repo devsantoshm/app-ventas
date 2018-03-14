@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Agrupar las rutas en una solta ruta de tipo resource
+Route::resource('almacen/categoria', 'CategoriaController');
