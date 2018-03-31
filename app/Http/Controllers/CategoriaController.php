@@ -61,10 +61,14 @@ class CategoriaController extends Controller
 
     public function update(CategoriaFormRequest $request, $id)
     {
-    	$categoria = Categoria::findOrFail($id);
+    	$categoria = Categoria::find($id);
+        //dd($categoria);
     	$categoria->nombre = $request->get('nombre');
+        //dd($categoria->nombre);
     	$categoria->descripcion = $request->get('descripcion');
-    	$categoria->update();
+        //$categoria->condicion = '1';
+    	$categoria->save();
+        //dd($categoria->update());
 
     	return redirect('almacen/categoria');
     }
