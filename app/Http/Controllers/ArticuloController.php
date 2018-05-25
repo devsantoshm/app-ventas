@@ -52,7 +52,7 @@ class ArticuloController extends Controller
 
     	if (Input::hasFile('imagen')) {
     		$file = Input::file('imagen');
-    		$file->move(public_path(), '/imagenes/articulos/', $file->getClientOriginalName());
+    		$file->move(public_path(). '/imagenes/articulos/', $file->getClientOriginalName());
     		$articulo->imagen = $file->getClientOriginalName();
     	}
 
@@ -87,7 +87,7 @@ class ArticuloController extends Controller
 
     	if (Input::hasFile('imagen')) {
     		$file = Input::file('imagen');
-    		$file->move(public_path(), '/imagenes/articulos/', $file->getClientOriginalName());
+    		$file->move(public_path() . '/imagenes/articulos/', $file->getClientOriginalName());
     		$articulo->imagen = $file->getClientOriginalName();
     	}
 
