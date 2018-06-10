@@ -2,7 +2,7 @@
 @section('contenido')
 	<div class="row">
 		<div class="col-sm-6 col-xs-12">
-			<h3>Nueva Articulo</h3>
+			<h3>Nueva Cliente</h3>
 			@if (count($errors) > 0)
 			<div class="alert alert-danger">
 				<ul>
@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<!-- llama al resource categoriaController y con el metodo post llama al metodo store -->
-	{!! Form::open(['url' => 'almacen/articulo', 'method'=>'POST', 'autocomplete'=>'off', 'files'=>'true']) !!}
+	{!! Form::open(['url' => 'ventas/cliente', 'method'=>'POST', 'autocomplete'=>'off']) !!}
 	<div class="row">
 		<div class="col-sm-6 col-xs-12">
 			<div class="form-group">
@@ -25,36 +25,36 @@
 		</div>
 		<div class="col-sm-6 col-xs-12">
 			<div class="form-group">
-				<label>Categoria</label>
-				<select name="idcategoria" class="form-control">
-					@foreach ($categorias as $cat)
-						<option value="{{ $cat->idcategoria }}">{{ $cat->nombre }}</option>
-					@endforeach
+				<label for="direccion">Dirección</label>
+				<input type="text" name="direccion" value="{{ old('direccion') }}" class="form-control" placeholder="Dirección">
+			</div>
+		</div>
+		<div class="col-sm-6 col-xs-12">
+			<div class="form-group">
+				<label>Documento</label>
+				<select name="tipo_documento" class="form-control">
+					<option value="DNI">DNI</option>
+					<option value="RUC">RUC</option>
+					<option value="PAS">PAS</option>
 				</select>
 			</div>
 		</div>
 		<div class="col-sm-6 col-xs-12">
 			<div class="form-group">
-				<label for="codigo">Código</label>
-				<input type="text" name="codigo" required value="{{ old('codigo') }}" class="form-control" placeholder="Código">
+				<label for="num_documento">Número documento</label>
+				<input type="text" name="num_documento" required value="{{ old('num_documento') }}" class="form-control" placeholder="Documento">
 			</div>
 		</div>
 		<div class="col-sm-6 col-xs-12">
 			<div class="form-group">
-				<label for="stock">Stock</label>
-				<input type="text" name="stock" required value="{{ old('stock') }}" class="form-control" placeholder="Stock">
+				<label for="telefono">Teléfono</label>
+				<input type="text" name="telefono" value="{{ old('telefono') }}" class="form-control" placeholder="Teléfono">
 			</div>
 		</div>
 		<div class="col-sm-6 col-xs-12">
 			<div class="form-group">
-				<label for="descripcion">Descripción</label>
-				<input type="text" name="descripcion" value="{{ old('descripcion') }}" class="form-control" placeholder="Descripción">
-			</div>
-		</div>
-		<div class="col-sm-6 col-xs-12">
-			<div class="form-group">
-				<label for="imagen">Imagen</label>
-				<input type="file" name="imagen" class="form-control">
+				<label for="email">Email</label>
+				<input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email">
 			</div>
 		</div>
 		<div class="col-sm-6 col-xs-12">

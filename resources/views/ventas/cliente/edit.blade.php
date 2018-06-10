@@ -2,7 +2,7 @@
 @section('contenido')
 	<div class="row">
 		<div class="col-sm-6 col-xs-12">
-			<h3>Editar Artículo: {{ $articulo->nombre }}</h3>
+			<h3>Editar Cliente: {{ $persona->nombre }}</h3>
 			@if (count($errors) > 0)
 			<div class="alert alert-danger">
 				<ul>
@@ -14,55 +14,58 @@
 			@endif
 		</div>
 	</div>		
-	<form action="{{ route('articulo.update', $articulo->idarticulo) }}" method="POST" enctype="multipart/form-data">
+	<form action="{{ route('cliente.update', $persona->idpersona) }}" method="POST">
 	<input name="_method" type="hidden" value="PUT">
 	{{ csrf_field() }}
 	<div class="row">
 		<div class="col-sm-6 col-xs-12">
 			<div class="form-group">
 				<label for="nombre">Nombre</label>
-				<input type="text" name="nombre" required value="{{ old('nombre', $articulo->nombre) }}" class="form-control">
+				<input type="text" name="nombre" required value="{{ $persona->nombre }}" class="form-control" placeholder="Nombre">
 			</div>
 		</div>
 		<div class="col-sm-6 col-xs-12">
 			<div class="form-group">
-				<label>Categoria</label>
-				<select name="idcategoria" class="form-control">
-					@foreach ($categorias as $cat)
-						@if ($cat->idcategoria == $articulo->idcategoria)
-						<option value="{{ $cat->idcategoria }}" selected>{{ $cat->nombre }}</option>	
-						@else
-						<option value="{{ $cat->idcategoria }}">{{ $cat->nombre }}</option>
-						@endif
-					@endforeach
+				<label for="direccion">Dirección</label>
+				<input type="text" name="direccion" value="{{ $persona->direccion }}" class="form-control" placeholder="Dirección">
+			</div>
+		</div>
+		<div class="col-sm-6 col-xs-12">
+			<div class="form-group">
+				<label>Documento</label>
+				<select name="tipo_documento" class="form-control">
+					@if ($persona->tipo_documento == 'DNI')
+						<option value="DNI" selected>DNI</option>
+						<option value="RUC">RUC</option>
+						<option value="PAS">PAS</option>
+					@elseif ($persona->tipo_documento == 'RUC')
+						<option value="DNI">DNI</option>
+						<option value="RUC" selected>RUC</option>
+						<option value="PAS">PAS</option>
+					@else
+						<option value="DNI">DNI</option>
+						<option value="RUC">RUC</option>
+						<option value="PAS" selected>PAS</option>
+					@endif
 				</select>
 			</div>
 		</div>
 		<div class="col-sm-6 col-xs-12">
 			<div class="form-group">
-				<label for="codigo">Código</label>
-				<input type="text" name="codigo" required value="{{ old('codigo', $articulo->codigo) }}" class="form-control">
+				<label for="num_documento">Número documento</label>
+				<input type="text" name="num_documento" required value="{{ $persona->num_documento }}" class="form-control" placeholder="Documento">
 			</div>
 		</div>
 		<div class="col-sm-6 col-xs-12">
 			<div class="form-group">
-				<label for="stock">Stock</label>
-				<input type="text" name="stock" required value="{{ old('stock', $articulo->stock) }}" class="form-control">
+				<label for="telefono">Teléfono</label>
+				<input type="text" name="telefono" value="{{ $persona->telefono }}" class="form-control" placeholder="Teléfono">
 			</div>
 		</div>
 		<div class="col-sm-6 col-xs-12">
 			<div class="form-group">
-				<label for="descripcion">Descripción</label>
-				<input type="text" name="descripcion" value="{{ old('descripcion', $articulo->descripcion) }}" class="form-control" placeholder="Descripción">
-			</div>
-		</div>
-		<div class="col-sm-6 col-xs-12">
-			<div class="form-group">
-				<label for="imagen">Imagen</label>
-				<input type="file" name="imagen" class="form-control">
-				@if ($articulo->imagen != "")
-					<img src="{{ asset('imagenes/articulos/'.$articulo->imagen) }}" height="300px" width="300px">
-				@endif
+				<label for="email">Email</label>
+				<input type="email" name="email" value="{{ $persona->email }}" class="form-control" placeholder="Email">
 			</div>
 		</div>
 		<div class="col-sm-6 col-xs-12">
