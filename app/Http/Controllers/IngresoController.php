@@ -27,11 +27,13 @@ class IngresoController extends Controller
     			->join('persona as p','i.idproveedor','=','p.idpersona')
     			->join('detalle_ingreso as di','i.idingreso', '=', 'di.idingreso')
     			->select('i.idingreso','i.fecha_hora','p.nombre','i.tipo_comprobante','i.serie_comprobante','i.num_comprobante','i.impuesto','i.estado', DB::raw('sum(di.cantidad*precio_compra) as total'))
-    			->where('i.num_comprobante', 'LIKE', '%'.$query.'%')//buscar por el nombre o por el codigo del articulo
+    			->where('i.num_comprobante', 'LIKE', '%'.$query.'%')
     			->orderBy('i.idingreso', 'desc')
-    			->groupBy('i.idingreso','i.fecha_hora','p.nombre','i.tipo_comprobante','i.serie_comprobante','i.num_comprobante','i.impuesto','i.estado')//agrupa los elementos repetidos en un solo elemento
+    			->groupBy('i.idingreso','i.fecha_hora','p.nombre','i.tipo_comprobante','i.serie_comprobante','i.num_comprobante','i.impuesto','i.estado')
     			->paginate(7);
-
+                //buscar por el nombre o por el codigo del articulo
+                //agrupa los elementos repetidos en un solo elemento
+                //dd($ingresos);
     			return view('compras.ingreso.index', compact('ingresos', 'query'));
     	}
     }
